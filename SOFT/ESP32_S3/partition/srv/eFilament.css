@@ -1,0 +1,240 @@
+.container {
+      max-width: 650px;
+      margin: 10px auto;
+      padding: 20px;
+      width: 550px;
+    }
+    .param-group { margin: 15px 0; }
+    .ui-slider { margin: 10px 0; }
+    .status-message {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 4px;
+      display: none;
+    }
+    .fldset{
+      border-radius: 4px;
+      border: 1px solid;
+    }
+    .success { background-color: #dff0d8; color: #3c763d; border: 1px solid #d6e9c6; }
+    .error { background-color: #f2dede; color: #a94442; border: 1px solid #ebccd1; }
+    
+    /* Стили для кнопки Upload когда активна */
+    .upload-active {
+      background-color: #dff0d8 !important;
+      color: #3c763d !important;
+      border: 1px solid #d6e9c6 !important;
+    }
+    
+    /* Стили для области загрузки */
+    .upload-area {
+      display: flex;
+      gap: 8px;
+      margin: 15px 0;
+      align-items: center;
+    }
+    
+    .file-label {
+      align-self: center;
+      color: #666;
+      min-width: 120px;
+    }
+    
+    /* Стили для прогресса */
+    .progress-container {
+      margin: 10px 0;
+      display: none;
+    }
+    .progress-label {
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+	  
+	#monitor-progress-label{
+    position: absolute;
+    left: 50%;
+    top: 5px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 24px;
+    font-weight: bold;	
+  } 
+	#MonitorProgressBar {
+		  position: relative;
+  }
+.progress-low .ui-progressbar-value {
+    background: #ff6b6b !important; /* Красный для низких значений */
+}
+
+.progress-medium .ui-progressbar-value {
+    background: #ffd93d !important; /* Желтый для средних значений */
+}
+
+.progress-high .ui-progressbar-value {
+    background: #6bcf7f !important; /* Зеленый для высоких значений */
+}
+
+.progress-critical .ui-progressbar-value {
+    background: #ff4757 !important; /* Ярко-красный для критических */
+}
+
+
+/* ---------------------------------  */ 
+	  
+.option-container {
+  margin: 10px 0;
+}
+
+.option-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1px;
+  padding: 2px 0;
+}
+
+.option-label {
+  color: #666;
+}
+
+.option-value {
+  font-weight: bold;
+  color: #333;
+}
+.form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.form-row label {
+  width: 140px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-row input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-row input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Стили для Editable Select */
+.es-list {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.es-list li {
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.es-list li:last-child {
+  border-bottom: none;
+}
+
+.es-list li.selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.es-list li:hover {
+  background-color: #f8f9fa;
+}
+
+.es-list li.selected:hover {
+  background-color: #0056b3;
+}
+
+.monProfileName {
+    font-weight:bold;
+    margin-bottom: 7px;
+}
+
+/* ------- таблица значений*/
+.profile-details {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+}
+
+.profile-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+    .profile-table tr {
+        border-bottom: 1px solid #e9ecef;
+    }
+
+        .profile-table tr:last-child {
+            border-bottom: none;
+        }
+
+    .profile-table td {
+        padding: 8px 5px;
+        vertical-align: top;
+    }
+
+    .profile-table .label {
+        text-align: left;
+        font-weight: 600;
+        color: #495057;
+        width: 35%;
+        padding-left: 0;
+    }
+
+    .profile-table .value {
+        text-align: right;
+        font-weight: 700;
+        color: #212529;
+        background: #fff;
+        padding: 6px 10px;
+        border-radius: 4px;
+        border: 1px solid #e9ecef;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    /* Небольшой ховер-эффект для строк */
+    .profile-table tr:hover {
+        background-color: #f1f3f5;
+    }
+
+        .profile-table tr:hover .value {
+            background-color: #e7f1ff;
+            border-color: #c0d6f5;
+        }
+
+/* Стили для ошибок валидации */
+.validation-error {
+    border-color: #ff4757 !important;
+    box-shadow: 0 0 0 2px rgba(255, 71, 87, 0.2) !important;
+}
+
+.es-wrapper .validation-error {
+    color: #ff4757;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Подсветка невалидных полей */
+input.es-input.validation-error {
+    border: 2px solid #ff4757;
+    background-color: #fff5f5;
+}

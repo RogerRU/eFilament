@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>eFilament control panel</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet"   href="eFilament.css">
+    <link rel="stylesheet" href="jq-edit-select-min.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+  <script src="jq-edit-select-min.js"></script>
+
+</head>
+<body>
+  <div class="container">
+    <div id="tabsMain">
+      <ul>
+        <li><a href="#tabUpload">Upload / Download</a></li>
+        <li><a href="#tabProfiles">Profiles</a></li>
+        <li><a href="#tabCalibrate">Calibration</a></li>
+      </ul>
+      
+      <div id="tabUpload">
+        <fieldset class="fldset">
+          <legend>Upload profiles to device:</legend>
+          
+          <div class="upload-area">
+            <label class="ui-button" style="position: relative; cursor: pointer;">
+              Choose File
+              <input type="file" id="fileInput" accept=".csv" 
+                     style="position: absolute; left: 0; top: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer;">
+            </label>
+            <span id="fileName" class="file-label">No file chosen</span>
+            <button id="uploadFile" class="ui-button" disabled>Upload</button>
+          </div>
+        </fieldset>
+        
+        <fieldset class="fldset">
+          <legend>Download profiles from device:</legend>
+          <button id="downloadFile" class="ui-button">Download Profiles</button>
+        </fieldset>	  
+      </div>
+      
+      <div id="tabProfiles">
+      <fieldset class="fldset">
+		   <legend>Monitor:</legend>
+			
+			<div class="monProfileName"><span id="monProfileName">---</span></div>
+			<div id="MonitorProgressBar">
+			<div id="monitor-progress-label"><span id="mon_prc">0.0%</span></div>
+			</div>
+		 
+  <div class="option-container">
+    <div class="option-row">
+      <span class="option-label">Filament weight:</span>
+      <span class="option-value" id="mon_wgt">-- g</span>
+    </div>
+    <div class="option-row">
+      <span class="option-label">Filament lenght:</span>
+      <span class="option-value" id="mon_lgt">-- m</span>
+    </div>
+    <div class="option-row">
+      <span class="option-label">Total weight:</span>
+      <span class="option-value" id="mon_wgt_total">-- g</span>
+    </div>
+  </div>
+	    </fieldset>
+ <fieldset>
+  <legend>Profiles</legend>		  
+     <!-- Управление профилями -->
+    <div class="profiles-header">
+		<div style="margin-bottom: 15px">
+      <select id="profilesSelect" style="width: 400px;"> </select>
+	</div>
+      <div class="profile-buttons">
+        <button id="setActiveBtn" class="ui-button" disabled>Set Active</button>
+        <button id="editProfileBtn" class="ui-button" disabled>Edit</button>
+        <button id="addProfileBtn" class="ui-button">Add New</button>
+        <button id="deleteProfileBtn" class="ui-button" disabled>Delete</button>
+      </div>
+    </div>
+
+    <!-- Детали профиля -->
+    <div id="profileDetails" class="profile-details" style="display: none;">
+        <table class="profile-table">
+            <tr>
+                <td class="label">ID:</td>
+                <td class="value" id="detailId"></td>
+            </tr>
+            <tr>
+                <td class="label">Type:</td>
+                <td class="value" id="detailType"></td>
+            </tr>
+            <tr>
+                <td class="label">Vendor:</td>
+                <td class="value" id="detailVendor"></td>
+            </tr>
+            <tr>
+                <td class="label">Info:</td>
+                <td class="value" id="detailInfo"></td>
+            </tr>
+            <tr>
+                <td class="label">Info2:</td>
+                <td class="value" id="detailInfo2"></td>
+            </tr>
+            <tr>
+                <td class="label">Full Weight:</td>
+                <td class="value" id="detailFullWeight"></td>
+            </tr>
+            <tr>
+                <td class="label">Spool Weight:</td>
+                <td class="value" id="detailSpoolWeight"></td>
+            </tr>
+            <tr>
+                <td class="label">Density:</td>
+                <td class="value" id="detailDensity"></td>
+            </tr>
+            <tr>
+                <td class="label">Diameter:</td>
+                <td class="value" id="detailDiameter"></td>
+            </tr>
+        </table>
+    </div>
+	 
+  </fieldset>
+		  
+      </div>
+      
+      <div id="tabCalibrate">
+        <fieldset class="fldset">
+          <legend>Calibrate Zero Offset:</legend>
+          
+          <div class="upload-area">
+            <button id="butt_calibZero" class="ui-button">Calibrate Zero</button>
+          </div>
+          
+          <!-- Прогресс для калибровки нуля -->
+          <div id="zeroProgressContainer" class="progress-container">
+            <div class="progress-label">Calibrating Zero Offset...</div>
+            <div id="zeroProgressBar"></div>
+          </div>
+        </fieldset>
+        
+        <fieldset class="fldset">
+          <legend>Calibrate Fullscale:</legend>
+          <label class="" style="position: relative; cursor: pointer;">
+            Reference weight, g
+            <input type="number" id="wgtInput" style="width: 70px">
+          </label>
+          <button id="butt_calibFullscale" class="ui-button">Calibrate Fullscale</button>
+          
+          <!-- Прогресс для калибровки полной шкалы -->
+          <div id="fullscaleProgressContainer" class="progress-container">
+            <div class="progress-label">Calibrating Fullscale...</div>
+            <div id="fullscaleProgressBar"></div>
+          </div>
+        </fieldset>	
+      </div>
+    </div>
+    <div id="uploadStatus" class="status-message"></div>	  
+  </div>
+<div id="profileModal" title="Profile Editor" style="display: none;">
+  <form id="profileForm">
+
+      <input type="text" id="modalOldId" name="OldId" required style="display:none"/>
+    <div class="form-row">
+      <label for="modalId">ID:</label>
+      <input type="text" id="modalId" name="id" required 
+             pattern="[A-Z0-9]{3,4}" title="3-4 uppercase letters or numbers">
+    </div>
+    
+    <div class="form-row">
+      <label for="modalType">Type:</label>
+      <input type="text" id="modalType" name="type" required>
+    </div>
+    
+    <div class="form-row">
+      <label for="modalVendor">Vendor:</label>
+      <input type="text" id="modalVendor" name="vendor" required>
+    </div>
+    
+    <div class="form-row">
+      <label for="modalInfo">Info:</label>
+      <input type="text" id="modalInfo" name="info">
+    </div>
+    
+    <div class="form-row">
+      <label for="modalInfo2">Info2:</label>
+      <input type="text" id="modalInfo2" name="info2">
+    </div>
+    
+    <div class="form-row">
+      <label for="modalFullWeight">Full Weight (g):</label>
+      <input type="text" id="modalFullWeight" name="full_weight" required 
+             pattern="[0-9]+" title="Numbers only">
+    </div>
+    
+    <div class="form-row">
+      <label for="modalSpoolWeight">Spool Weight (g):</label>
+      <input type="text" id="modalSpoolWeight" name="spool_weight" required 
+             pattern="[0-9]+" title="Numbers only">
+    </div>
+    
+    <div class="form-row">
+      <label for="modalDensity">Density (g/cm³):</label>
+      <input type="text" id="modalDensity" name="density" required 
+             pattern="[0-9]+\.?[0-9]*" title="Decimal number">
+    </div>
+    
+    <div class="form-row">
+      <label for="modalDiameter">Diameter (mm):</label>
+      <input type="text" id="modalDiameter" name="diameter" required 
+             pattern="[0-9]+\.?[0-9]*" title="Decimal number">
+    </div>
+  </form>
+</div>
+	<div id="debugInfo" style="display: none; background: #f0f0f0; padding: 10px; margin: 10px 0; font-family: monospace;">
+    <strong>Debug Info:</strong>
+    <div id="debugContent"></div>
+</div>
+<script src="eFilament.js"></script>
+</body>
+</html>

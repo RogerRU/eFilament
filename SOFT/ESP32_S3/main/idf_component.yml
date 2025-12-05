@@ -1,0 +1,9 @@
+version: "1.0.0"
+
+dependencies:
+  idf: ">=5.4.0"
+
+  esp_lcd_sh8601:
+    version: "*"
+    public: true
+
